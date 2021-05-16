@@ -6,6 +6,6 @@
   "endOfLine": "lf",
   "singleQuote": false,
   "trailingComma": "none",
-  "svelteSortOrder": "scripts-markup-styles",
-  "svelteStrictMode": true,
+  "svelteSortOrder" : "options-styles-scripts-markup",
+  "svelteStrictMode": true
 }

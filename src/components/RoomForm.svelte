@@ -1,3 +1,15 @@
+<style>
+  form {
+    width: 100%;
+  }
+
+  text-field-container {
+    width: 100%;
+    display: inline-block;
+    margin: var(--margin-small) 0;
+  }
+</style>
+
 <script>
   import Textfield from "@smui/textfield";
   import Icon from "@smui/textfield/icon";
@@ -34,15 +46,3 @@
     </Actions>
   </Card>
 </form>
-
-<style>
-  form {
-    width: 100%;
-  }
-
-  text-field-container {
-    width: 100%;
-    display: inline-block;
-    margin: var(--margin-small) 0;
-  }
-</style>

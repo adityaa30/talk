@@ -1,20 +1,3 @@
-<script>
-  import { onMount } from "svelte";
-  import Card from "@smui/card";
-
-  let video;
-
-  onMount(async () => {
-    video.srcObject = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
-  });
-</script>
-
-<div class="container">
-  <Card>
-    <video autoplay bind:this="{video}" muted playsinline></video>
-  </Card>
-</div>
-
 <style>
   .container {
     position: relative;
@@ -42,3 +25,20 @@
     border-radius: var(--card-border-radius);
   }
 </style>
+
+<script>
+  import { onMount } from "svelte";
+  import Card from "@smui/card";
+
+  let video;
+
+  onMount(async () => {
+    video.srcObject = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
+  });
+</script>
+
+<div class="container">
+  <Card>
+    <video autoplay bind:this="{video}" muted playsinline></video>
+  </Card>
+</div>

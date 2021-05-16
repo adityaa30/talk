@@ -10,7 +10,7 @@
     "format": "npm run format:ui && npm run format:ts",
     "predeploy": "npm run validate && npm run format && npm run build",
     "deploy": "gh-pages --dist public --branch gh-pages --message 'Publish Talk App'",
-    "prepare": "npm run smui-theme-light && npm run smui-theme-dark",
+    "prepare": "mkdir -p public/build && npm run smui-theme-light && npm run smui-theme-dark",
     "smui-theme-light": "smui-theme compile public/build/smui.css -i src/theme",
     "smui-theme-dark": "smui-theme compile public/build/smui-dark.css -i src/theme/dark",
     "build": "npm run prepare && rollup -c",
