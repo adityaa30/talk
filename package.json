@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "validate": "svelte-check",
+    "validate": "svelte-check --fail-on-warnings --fail-on-hints",
     "format:svelte": "prettier --config='.prettierrc' --write '**/*.svelte'",
     "format:ts": "prettier --config='.prettierrc' --write '**/*.ts'",
     "format": "npm run format:svelte && npm run format:ts",
@@ -32,6 +32,7 @@
     "@smui/fab": "^4.2.0",
     "@smui/textfield": "^4.2.0",
     "@tsconfig/svelte": "^1.0.0",
+    "@types/lodash.debounce": "^4.0.6",
     "gh-pages": "^3.1.0",
     "node-sass": "^6.0.0",
     "postcss": "^8.2.15",

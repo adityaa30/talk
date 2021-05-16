@@ -1,6 +1,16 @@
 <script lang="ts">
   import Preview from "./components/Preview.svelte";
   import RoomForm from "./components/RoomForm.svelte";
+  import KeyboardShortcutHelper from "./utils/KeyboardShortcutHelper";
+  import { onDestroy, onMount } from "svelte";
+
+  onMount(() => {
+    KeyboardShortcutHelper.Start();
+  });
+
+  onDestroy(() => {
+    KeyboardShortcutHelper.Stop();
+  });
 </script>
 
 <container>

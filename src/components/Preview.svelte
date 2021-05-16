@@ -7,8 +7,8 @@
   import debounce from "lodash.debounce";
 
   let video;
-  let hasAudioTrack = false,
-    hasVideoTrack = false;
+  let hasAudioTrack = false;
+  let hasVideoTrack = false;
 
   onMount(async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
