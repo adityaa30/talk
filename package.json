@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "validate": "svevte-check",
+    "validate": "svelte-check",
     "format:svelte": "prettier --config='.prettierrc' --write '**/*.svelte'",
     "format:ts": "prettier --config='.prettierrc' --write '**/*.ts'",
     "format": "npm run format:svelte && npm run format:ts",
