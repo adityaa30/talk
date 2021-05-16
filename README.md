@@ -1,3 +1,6 @@
+![Check Commit](https://github.com/adityaa30/talk/actions/workflows/commit.yml/badge.svg)
+![Build & Deploy](https://github.com/adityaa30/talk/actions/workflows/deploy.yml/badge.svg)
+
 # Talk 🎙📽💬
 
 Flexible Collaboration App.
