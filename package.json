@@ -34,6 +34,7 @@
     "@tsconfig/svelte": "^1.0.0",
     "gh-pages": "^3.1.0",
     "node-sass": "^6.0.0",
+    "postcss": "^8.2.15",
     "postcss-load-config": "^3.0.1",
     "postcss-plugin": "^1.0.0",
     "prettier": "^2.3.0",
