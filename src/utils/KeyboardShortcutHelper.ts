@@ -1,11 +1,26 @@
-import { cKeyboardCommandKey, cKeyboardControlKey, cKeyboardOptionsKey, cKeyboardShiftKey } from "./Constants";
+import {
+  cKeyboardCommandKey,
+  cKeyboardControlKey,
+  cKeyBoardIgnoreKeys,
+  cKeyboardOptionsKey,
+  cKeyboardShiftKey,
+  cSpaceBar
+} from "./Constants";
 
 const listeners = new Map<() => void, string>();
 
 /** Get the key, convert to shortcut icon if possible */
 function GetKeysFromEvent(ev: KeyboardEvent): Array<string> {
+  const keys = [];
+
   let key = ev.key.toUpperCase();
-  const keys = [key];
+  if (key === " ") {
+    keys.push(cSpaceBar);
+  } else if (cKeyBoardIgnoreKeys.findIndex((k) => k === key) === -1) {
+    // We check if this key will be added below, if yes we add it below
+    // and not consider here
+    keys.push(key);
+  }
 
   if (ev.ctrlKey) keys.push(cKeyboardControlKey);
   if (ev.metaKey) keys.push(cKeyboardCommandKey);
@@ -24,7 +39,7 @@ function handleOnKeyDown(ev: KeyboardEvent) {
 }
 
 function isKeyClicked(combination: string, keys: Array<string>): boolean {
-  const buttons = combination.toUpperCase().replace("+", "").split("");
+  const buttons = combination.toUpperCase().replace(/[ +]/g, "").split("");
 
   for (const button of buttons) {
     if (keys.findIndex((key) => button === key) === -1) {

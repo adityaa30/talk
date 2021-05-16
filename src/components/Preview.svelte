@@ -16,19 +16,24 @@
   let hasVideoTrack = false;
 
   onMount(async () => {
-    const stream = await navigator.mediaDevices.getUserMedia({
-      video: $localVideoEnabled,
-      audio: $localAudioEnabled
-    });
+    if ($localAudioEnabled || $localVideoEnabled) {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: $localVideoEnabled,
+        audio: $localAudioEnabled
+      });
 
-    console.debug(`%c[Preview] LocalStream:`, "color: Green", stream);
-    console.debug(`%c[Preview] Tracks:`, "color: Green", stream.getTracks());
+      console.debug(`%c[Preview] LocalStream:`, "color: Green", stream);
+      console.debug(`%c[Preview] Tracks:`, "color: Green", stream.getTracks());
 
-    // Start rendering the video in UI
-    video.srcObject = stream;
+      // Start rendering the video in UI
+      video.srcObject = stream;
 
-    hasAudioTrack = stream.getAudioTracks().length > 0;
-    hasVideoTrack = stream.getVideoTracks().length > 0;
+      hasAudioTrack = stream.getAudioTracks().length > 0;
+      hasVideoTrack = stream.getVideoTracks().length > 0;
+    } else {
+      // Initialize any empty media-stream
+      video.srcObject = new MediaStream();
+    }
 
     KeyboardShortcutHelper.addOnKeyClickListener(cKeyboardShortCutLocalVideoMute, toggleVideo);
     KeyboardShortcutHelper.addOnKeyClickListener(cKeyboardShortCutLocalAudioMute, toggleAudio);
@@ -111,27 +116,34 @@
     <video autoplay bind:this="{video}" muted playsinline></video>
 
     <div id="preview-action-buttons-container">
-      <Fab
-        id="preview-video-toggle-button"
-        style="margin: var(--margin-large) var(--margin-medium);"
-        enabled="{hasVideoTrack}"
-        on:click="{toggleVideo}"
-      >
-        <Icon class="material-icons">{$localVideoEnabled ? "videocam" : "videocam_off"}</Icon>
-      </Fab>
-      <Fab
-        id="preview-audio-toggle-button"
-        style="margin: var(--margin-large) var(--margin-medium);"
-        enabled="{hasAudioTrack}"
-        on:click="{toggleAudio}"
-      >
-        <Icon class="material-icons">{$localAudioEnabled ? "mic" : "mic_off"}</Icon>
-      </Fab>
+      <fab-wrapper data-tooltip="{cKeyboardShortCutLocalVideoMute}">
+        <Fab
+          id="preview-video-toggle-button"
+          style="margin: var(--margin-large) var(--margin-medium);"
+          enabled="{hasVideoTrack}"
+          on:click="{toggleVideo}"
+        >
+          <Icon class="material-icons">{$localVideoEnabled ? "videocam" : "videocam_off"}</Icon>
+        </Fab>
+      </fab-wrapper>
+
+      <fab-wrapper data-tooltip="{cKeyboardShortCutLocalAudioMute}">
+        <Fab
+          id="preview-audio-toggle-button"
+          style="margin: var(--margin-large) var(--margin-medium);"
+          enabled="{hasAudioTrack}"
+          on:click="{toggleAudio}"
+        >
+          <Icon class="material-icons">{$localAudioEnabled ? "mic" : "mic_off"}</Icon>
+        </Fab>
+      </fab-wrapper>
     </div>
   </div>
 </Card>
 
-<style>
+<style lang="scss">
+  @import "src/theme/tooltip";
+
   .container {
     position: relative;
     width: 100%;
