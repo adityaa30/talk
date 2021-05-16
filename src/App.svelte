@@ -41,5 +41,4 @@
     transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
     width: 60%;
   }
-
 </style>

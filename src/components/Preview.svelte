@@ -11,7 +11,7 @@
 
 <div class="container">
   <Card>
-    <video autoplay bind:this={video} muted playsinline></video>
+    <video autoplay bind:this="{video}" muted playsinline></video>
   </Card>
 </div>
 
@@ -23,7 +23,7 @@
     min-height: 480px;
     align-self: center;
 
-    background: #212F3D;
+    background: #212f3d;
 
     display: inline-block;
     border-radius: var(--card-border-radius);
@@ -39,6 +39,6 @@
     width: 100%;
     height: 100%;
     margin: 0;
-    border-radius: var(--card-border-radius)
+    border-radius: var(--card-border-radius);
   }
 </style>

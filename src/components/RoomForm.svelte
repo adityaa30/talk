@@ -12,23 +12,13 @@
   <Card>
     <Content>
       <text-field-container>
-        <Textfield
-          style="width: 100%;"
-          variant="outlined"
-          bind:value="{name}"
-          label="Name"
-        >
+        <Textfield style="width: 100%;" variant="outlined" bind:value="{name}" label="Name">
           <Icon class="material-icons" slot="leadingIcon">account_circle</Icon>
         </Textfield>
       </text-field-container>
 
       <text-field-container>
-        <Textfield
-          style="width: 100%;"
-          variant="outlined"
-          bind:value="{room}"
-          label="Room"
-        >
+        <Textfield style="width: 100%;" variant="outlined" bind:value="{room}" label="Room">
           <Icon class="material-icons" slot="leadingIcon">celebration</Icon>
         </Textfield>
       </text-field-container>
@@ -55,5 +45,4 @@
     display: inline-block;
     margin: var(--margin-small) 0;
   }
-
 </style>
