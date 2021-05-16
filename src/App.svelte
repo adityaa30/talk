@@ -1,3 +1,17 @@
+<script lang="ts">
+  import Preview from "./components/Preview.svelte";
+  import RoomForm from "./components/RoomForm.svelte";
+</script>
+
+<container>
+  <div id="room-form-container">
+    <RoomForm />
+  </div>
+  <div id="preview-container">
+    <Preview />
+  </div>
+</container>
+
 <style lang="scss">
   :global(:root) {
     --card-border-radius: 0.35rem;
@@ -29,17 +43,3 @@
     width: 60%;
   }
 </style>
-
-<script lang="ts">
-  import Preview from "./components/Preview.svelte";
-  import RoomForm from "./components/RoomForm.svelte";
-</script>
-
-<container>
-  <div id="room-form-container">
-    <RoomForm />
-  </div>
-  <div id="preview-container">
-    <Preview />
-  </div>
-</container>

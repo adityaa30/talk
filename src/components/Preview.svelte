@@ -1,43 +1,3 @@
-<style>
-  .container {
-    position: relative;
-    width: 100%;
-    align-self: center;
-
-    background: #212f3d;
-
-    display: inline-block;
-    border-radius: var(--card-border-radius);
-    overflow: auto;
-
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-
-    transition: border-color 0.2s, height 0.3s ease-in-out, width 0.5s, height 0.5s;
-  }
-
-  video {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    border-radius: var(--card-border-radius);
-
-    z-index: 1;
-  }
-
-  #preview-action-buttons-container {
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-
-    z-index: 2;
-  }
-</style>
-
 <script>
   import { onMount } from "svelte";
   import { localAudioEnabled, localVideoEnabled } from "../stores/User";
@@ -153,3 +113,43 @@
     </div>
   </div>
 </Card>
+
+<style>
+  .container {
+    position: relative;
+    width: 100%;
+    align-self: center;
+
+    background: #212f3d;
+
+    display: inline-block;
+    border-radius: var(--card-border-radius);
+    overflow: auto;
+
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+
+    transition: border-color 0.2s, height 0.3s ease-in-out, width 0.5s, height 0.5s;
+  }
+
+  video {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: var(--card-border-radius);
+
+    z-index: 1;
+  }
+
+  #preview-action-buttons-container {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+
+    z-index: 2;
+  }
+</style>
