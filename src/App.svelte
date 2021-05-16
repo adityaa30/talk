@@ -68,9 +68,10 @@
     text-align: center;
     transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
     width: 60%;
+    max-height: 90vh;
   }
 
-  @media (max-width: 992px) {
+  @media screen and (orientation: portrait) and (max-width: 992px) {
     container {
       flex-direction: column;
       justify-content: center;
@@ -90,7 +91,7 @@
     }
   }
 
-  @media (max-width: 576px) {
+  @media screen and (orientation: portrait) and (max-width: 576px) {
     container {
       justify-content: start;
     }
