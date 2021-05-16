@@ -4,36 +4,56 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public --no-clear",
     "validate": "svelte-check",
     "format:ui": "prettier --config='.prettierrc' --write '**/*.svelte'",
     "format:ts": "prettier --config='.prettierrc' --write '**/*.ts'",
     "format": "npm run format:ui && npm run format:ts",
     "predeploy": "npm run build",
-    "deploy": "gh-pages --dist public --branch gh-pages --message 'Publish Talk App'"
+    "deploy": "gh-pages --dist public --branch gh-pages --message 'Publish Talk App'",
+    "prepare": "npm run smui-theme-light && npm run smui-theme-dark",
+    "smui-theme-light": "smui-theme compile public/build/smui.css -i src/theme",
+    "smui-theme-dark": "smui-theme compile public/build/smui-dark.css -i src/theme/dark",
+    "build": "npm run prepare && rollup -c",
+    "dev": "npm run prepare && rollup -c -w",
+    "start": "sirv public --no-clear"
+  },
+  "postcss": {
+    "map": false,
+    "plugins": {
+      "postcss-plugin": {}
+    }
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-typescript": "^8.0.0",
+    "@smui/button": "^4.2.0",
+    "@smui/card": "^4.2.0",
+    "@smui/textfield": "^4.2.0",
     "@tsconfig/svelte": "^1.0.0",
     "gh-pages": "^3.1.0",
+    "node-sass": "^6.0.0",
+    "postcss-load-config": "^3.0.1",
+    "postcss-plugin": "^1.0.0",
     "prettier": "^2.3.0",
     "prettier-plugin-svelte": "^2.3.0",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-svelte": "^7.0.0",
     "rollup-plugin-terser": "^7.0.0",
+    "sass": "^1.32.13",
+    "smui-theme": "^4.2.0",
     "svelte": "^3.0.0",
     "svelte-check": "^1.0.0",
-    "svelte-preprocess": "^4.0.0",
+    "svelte-preprocess": "^4.7.3",
     "tslib": "^2.0.0",
     "typescript": "^4.0.0"
   },
   "dependencies": {
+    "@100mslive/100ms-web-sdk": "^0.0.12-210",
+    "@material/theme": "^11.0.0",
     "sirv-cli": "^1.0.0"
   }
 }

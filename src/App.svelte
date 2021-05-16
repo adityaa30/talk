@@ -1,30 +1,45 @@
 <script lang="ts">
-  export let name: string;
+  import Preview from "./components/Preview.svelte";
+  import RoomForm from "./components/RoomForm.svelte";
 </script>
 
-<main>
-  <h1>Hello {name}!</h1>
-  <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
+<container>
+  <div id="room-form-container">
+    <RoomForm />
+  </div>
+  <div id="preview-container">
+    <Preview />
+  </div>
+</container>
 
-<style>
-  main {
+<style lang="scss">
+  :global(:root) {
+    --card-border-radius: 0.35rem;
+    --margin-small: 0.2rem;
+    --margin-medium: 0.35rem;
+  }
+
+  container {
+    width: 100%;
+    height: 100%;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: baseline;
+  }
+
+  #room-form-container {
     text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
+    transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+    width: 30%;
   }
 
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
+  #preview-container {
+    text-align: center;
+    transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+    width: 60%;
   }
 
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  }
 </style>
