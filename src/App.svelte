@@ -1,8 +1,9 @@
 <style lang="scss">
   :global(:root) {
     --card-border-radius: 0.35rem;
-    --margin-small: 0.2rem;
-    --margin-medium: 0.35rem;
+    --margin-small: 0.25rem;
+    --margin-medium: 0.5rem;
+    --margin-large: 1rem;
   }
 
   container {

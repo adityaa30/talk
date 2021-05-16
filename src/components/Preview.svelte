@@ -2,8 +2,6 @@
   .container {
     position: relative;
     width: 100%;
-    min-width: 640px;
-    min-height: 480px;
     align-self: center;
 
     background: #212f3d;
@@ -37,8 +35,8 @@
   });
 </script>
 
-<div class="container">
-  <Card>
+<Card>
+  <div class="container">
     <video autoplay bind:this="{video}" muted playsinline></video>
-  </Card>
-</div>
+  </div>
+</Card>
