@@ -29,6 +29,7 @@
     "@rollup/plugin-typescript": "^8.0.0",
     "@smui/button": "^4.2.0",
     "@smui/card": "^4.2.0",
+    "@smui/fab": "^4.2.0",
     "@smui/textfield": "^4.2.0",
     "@tsconfig/svelte": "^1.0.0",
     "gh-pages": "^3.1.0",
@@ -54,6 +55,7 @@
   "dependencies": {
     "@100mslive/100ms-web-sdk": "^0.0.12-210",
     "@material/theme": "^11.0.0",
+    "lodash.debounce": "^4.0.8",
     "sirv-cli": "^1.0.0"
   }
 }
