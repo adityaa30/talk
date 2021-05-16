@@ -42,6 +42,7 @@ function firePossibleListeners(keys: Array<string>): boolean {
     if (isKeyClicked(combination, keys)) {
       found = true;
 
+      console.debug(`%c[KeyboardShortHelper] Clicked Combination=${combination}`, "color: LightBlue");
       cb(); // Fire the callback / listener
     }
   });
@@ -50,13 +51,13 @@ function firePossibleListeners(keys: Array<string>): boolean {
 }
 
 function Start() {
-  console.debug(`%c[ClickedKeys] START`, "color: Orange");
+  console.debug(`%c[KeyboardShortHelper] START`, "color: Orange");
 
   document.addEventListener("keydown", handleOnKeyDown);
 }
 
 function Stop() {
-  console.debug(`%c[ClickedKeys] STOP`, "color: Orange");
+  console.debug(`%c[KeyboardShortHelper] STOP`, "color: Orange");
   listeners.clear();
 
   document.removeEventListener("keydown", handleOnKeyDown);

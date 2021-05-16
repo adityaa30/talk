@@ -1,32 +1,49 @@
 <script>
-  import { onMount } from "svelte";
+  import debounce from "lodash.debounce";
+  import { onDestroy, onMount } from "svelte";
   import { localAudioEnabled, localVideoEnabled } from "../stores/User";
   import Card from "@smui/card";
   import Fab, { Icon } from "@smui/fab";
-  import { cDebounceButtonClickDelay } from "../utils/Constants";
-  import debounce from "lodash.debounce";
+  import {
+    cDebounceButtonClickDelay,
+    cKeyboardShortCutLocalVideoMute,
+    cKeyboardShortCutLocalAudioMute
+  } from "../utils/Constants";
+  import KeyboardShortcutHelper from "../utils/KeyboardShortcutHelper";
 
   let video;
   let hasAudioTrack = false;
   let hasVideoTrack = false;
 
   onMount(async () => {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-    console.log(`%c[Preview] LocalStream:`, "color: LightBlue", stream);
-    console.log(`%c[Preview] Tracks:`, "color: LightBlue", stream.getTracks());
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: $localVideoEnabled,
+      audio: $localAudioEnabled
+    });
+
+    console.debug(`%c[Preview] LocalStream:`, "color: Green", stream);
+    console.debug(`%c[Preview] Tracks:`, "color: Green", stream.getTracks());
 
     // Start rendering the video in UI
     video.srcObject = stream;
 
     hasAudioTrack = stream.getAudioTracks().length > 0;
     hasVideoTrack = stream.getVideoTracks().length > 0;
+
+    KeyboardShortcutHelper.addOnKeyClickListener(cKeyboardShortCutLocalVideoMute, toggleVideo);
+    KeyboardShortcutHelper.addOnKeyClickListener(cKeyboardShortCutLocalAudioMute, toggleAudio);
   });
 
-  const toggleVideo = debounce(async () => {
+  onDestroy(() => {
+    KeyboardShortcutHelper.removeOnKeyClickListener(cKeyboardShortCutLocalVideoMute, toggleVideo);
+    KeyboardShortcutHelper.removeOnKeyClickListener(cKeyboardShortCutLocalAudioMute, toggleAudio);
+  });
+
+  const toggleVideoTrack = debounce(async () => {
     const stream = video.srcObject;
     console.debug(
       `%c[Preview] toggleVideo: localVideoEnabled=${$localVideoEnabled}, tracks=`,
-      "color: LightBlue",
+      "color: GreenYellow",
       stream.getTracks()
     );
 
@@ -36,13 +53,13 @@
     if ($localVideoEnabled) {
       // Unmute Video -> Get new video track
       const videoStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-      console.debug(`%c[Preview] toggleVideo: new VideoStreamTracks=`, "color: LightBlue", videoStream.getTracks());
+      console.debug(`%c[Preview] toggleVideo: new VideoStreamTracks=`, "color: GreenYellow", videoStream.getTracks());
 
       stream.addTrack(videoStream.getVideoTracks()[0]);
     } else {
       // Mute Video
       const track = stream.getVideoTracks()[0];
-      console.log(`%c[Preview] toggleVideo: Removing track`, "color: LightBlue", track);
+      console.debug(`%c[Preview] toggleVideo: Removing track`, "color: GreenYellow", track);
 
       track.enabled = false;
       track.stop();
@@ -50,11 +67,11 @@
     }
   }, cDebounceButtonClickDelay);
 
-  const toggleAudio = debounce(async () => {
+  const toggleAudioTrack = debounce(async () => {
     const stream = video.srcObject;
     console.debug(
       `%c[Preview] toggleAudio: localAudioEnabled=${$localAudioEnabled}, tracks=`,
-      "color: LightBlue",
+      "color: GreenYellow",
       stream.getTracks()
     );
 
@@ -64,13 +81,13 @@
     if ($localAudioEnabled) {
       // Unmute Audio -> Get new audio track
       const audioStream = await navigator.mediaDevices.getUserMedia({ video: false, audio: true });
-      console.debug(`%c[Preview] toggleAudio: new AudioStreamTracks=`, "color: LightBlue", audioStream.getTracks());
+      console.debug(`%c[Preview] toggleAudio: new AudioStreamTracks=`, "color: GreenYellow", audioStream.getTracks());
 
       stream.addTrack(audioStream.getAudioTracks()[0]);
     } else {
       // Mute Audio
       const track = stream.getAudioTracks()[0];
-      console.log(`%c[Preview] toggleAudio: Removing track`, "color: LightBlue", track);
+      console.log(`%c[Preview] toggleAudio: Removing track`, "color: GreenYellow", track);
 
       track.enabled = false;
       track.stop();
@@ -78,14 +95,14 @@
     }
   }, cDebounceButtonClickDelay);
 
-  function handleVideoFabClick() {
+  function toggleVideo() {
     localVideoEnabled.set(!$localVideoEnabled);
-    toggleVideo();
+    toggleVideoTrack();
   }
 
-  function handleAudioFabClick() {
+  function toggleAudio() {
     localAudioEnabled.set(!$localAudioEnabled);
-    toggleAudio();
+    toggleAudioTrack();
   }
 </script>
 
@@ -98,7 +115,7 @@
         id="preview-video-toggle-button"
         style="margin: var(--margin-large) var(--margin-medium);"
         enabled="{hasVideoTrack}"
-        on:click="{handleVideoFabClick}"
+        on:click="{toggleVideo}"
       >
         <Icon class="material-icons">{$localVideoEnabled ? "videocam" : "videocam_off"}</Icon>
       </Fab>
@@ -106,7 +123,7 @@
         id="preview-audio-toggle-button"
         style="margin: var(--margin-large) var(--margin-medium);"
         enabled="{hasAudioTrack}"
-        on:click="{handleAudioFabClick}"
+        on:click="{toggleAudio}"
       >
         <Icon class="material-icons">{$localAudioEnabled ? "mic" : "mic_off"}</Icon>
       </Fab>

@@ -10,4 +10,5 @@ export const cKeyboardOptionsKey = "⌥";
 export const cKeyboardControlKey = "^";
 export const cKeyboardShiftKey = "⇧";
 
-export const cMacLocalVideoMuteShortCut = cKeyboardCommandKey + "d";
+export const cKeyboardShortCutLocalVideoMute = cKeyboardCommandKey + "d";
+export const cKeyboardShortCutLocalAudioMute = cKeyboardCommandKey + "e";
