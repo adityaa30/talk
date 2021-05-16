@@ -3,9 +3,14 @@
 
 # Talk 🎙📽💬
 
-Flexible Collaboration App.
+Flexible Collaboration App. Talk allows groups to do all the below fun in just **one** web app.
 
-Live at: [https://adityaa30.github.io/talk/](https://adityaa30.github.io/talk/)
+1. Play online games like [skribbl.io](https://skribbl.io/) & [Mafia](https://mafia.gg/)
+2. Share [Google Docs](https://www.google.com/docs/about/) while doing an assignment or taking an interview
+3. Watch YouTube movies without sacrificing any audio or video quality over a smart collaboration & synchronization API
+4. Much more!
+
+Demo Live at: [https://adityaa30.github.io/talk/](https://adityaa30.github.io/talk/)
 
 ## Setup Guide 🎬
 
@@ -78,15 +83,15 @@ directory and rebuilds & hot-reloads webpage on change.
 
 ### Features 👾🛸
 
-1. [ ] Create / Join Form
+1. Create / Join Form
     - [x] Basic UI / Components
     - Left Card (Width=`30%`)
         - https://developers.google.com/web/updates/2018/07/css-scroll-snap
         - [x] [Room Form](/src/components/RoomForm.svelte)
     - Right Card (Width=`60%`)
-        - [ ] [Preview](/src/components/Preview.svelte) [WIP ⏰]
+        - [x] [Preview](/src/components/Preview.svelte)
 
-2. [ ] Conference Page
+2. Conference Page
     - [ ] Left Pane (Width=`75%`)
         - [ ] Collaboration
         - [ ] Screen-Share
@@ -104,9 +109,19 @@ directory and rebuilds & hot-reloads webpage on change.
         - [ ] Settings Button
         - [ ] Start Collaboration Button - Shows a dropdown with list of supported apps
 
-3. [ ] Collaboration
+3. Collaboration
     - [ ] Any item settable to all the users (anyone first-come-first-serve can set)
     - [ ] Vote to remove (50% + majority kick)
     - Host -> Person who starts a collaboration
     - [ ] A host is fixed and will be shown to everyone, in the case host leaves the call, a new host will be decided
       based on an election. (Election criteria TBD 💬)
+    - [ ] Pin a participant's video (stand-up, small-concerts, etc)
+
+4. Other Features
+    - [x] [KeyboardShortcuts](/src/utils/KeyboardShortcutHelper.ts) API
+    - [x] [LocalStore](/src/utils/LocalStore.ts) API
+    - [ ] Utils to fetch 100ms auth-token and create-room
+    - [ ] Read room-id from url
+    - [ ] Mobile Responsive Design (Portrait + Landscape)
+    - [ ] Animations + Transitions
+    - [ ] Integrate [LogRocket](https://logrocket.com/)
