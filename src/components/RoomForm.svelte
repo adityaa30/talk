@@ -4,6 +4,10 @@
   import Button, { Label } from "@smui/button";
   import Card, { Actions, Content } from "@smui/card";
   import { name, roomId } from "../stores/User";
+  import { createEventDispatcher } from "svelte";
+  import { cDispatchJoinRoom } from "../utils/Constants";
+
+  const dispatch = createEventDispatcher();
 
   let room = $roomId;
 
@@ -12,6 +16,8 @@
     name.set($name);
     roomId.set(room);
     console.log(`%c[RoomForm] Join Room roomId=${room}, name=${name}`, "color: LightBlue");
+
+    dispatch(cDispatchJoinRoom);
   }
 
   function handleCreateRoom() {

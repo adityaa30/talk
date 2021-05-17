@@ -7,6 +7,8 @@ export const cRoomId = "RoomId";
 export const cLocalAudioEnabled = "LocalAudioEnabled";
 export const cLocalVideoEnabled = "LocalVideoEnabled";
 
+export const cDispatchJoinRoom = "join-room";
+
 export const cDebounceButtonClickDelay = 500; // milliseconds
 
 export const cKeyboardCommandKey = "⌘";

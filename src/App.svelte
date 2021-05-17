@@ -1,6 +1,9 @@
 <script lang="ts">
   import Home from "./pages/Home.svelte";
+  import Meeting from "./pages/Meeting.svelte";
+
   import KeyboardShortcutHelper from "./utils/KeyboardShortcutHelper";
+  import { Page } from "./typings/Page";
   import { onDestroy, onMount } from "svelte";
 
   onMount(() => {
@@ -10,9 +13,19 @@
   onDestroy(() => {
     KeyboardShortcutHelper.Stop();
   });
+
+  let page = Page.Home;
+
+  function handleJoinRoom() {
+    page = Page.Meeting;
+  }
 </script>
 
-<Home />
+{#if page === Page.Meeting}
+  <Meeting />
+{:else}
+  <Home on:join-room="{handleJoinRoom}" />
+{/if}
 
 <style lang="scss">
   :global(:root) {

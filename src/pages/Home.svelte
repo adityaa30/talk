@@ -1,11 +1,19 @@
 <script lang="ts">
   import Preview from "../components/Preview.svelte";
   import RoomForm from "../components/RoomForm.svelte";
+  import { createEventDispatcher } from "svelte";
+  import { cDispatchJoinRoom } from "../utils/Constants";
+
+  const dispatch = createEventDispatcher();
+
+  function handleJoinRoom() {
+    dispatch(cDispatchJoinRoom);
+  }
 </script>
 
 <container>
   <div id="room-form-container">
-    <RoomForm />
+    <RoomForm on:join-room="{handleJoinRoom}" />
   </div>
   <div id="preview-container">
     <Preview />
