@@ -125,3 +125,6 @@ directory and rebuilds & hot-reloads webpage on change.
     - [ ] Mobile Responsive Design (Portrait + Landscape)
     - [ ] Animations + Transitions
     - [ ] Integrate [LogRocket](https://logrocket.com/)
+   
+5. Design Ideas
+   - [ ] Animating Border loader (for Preview, VideoTiles)
