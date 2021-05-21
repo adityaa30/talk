@@ -8,6 +8,7 @@ export const cLocalAudioEnabled = "LocalAudioEnabled";
 export const cLocalVideoEnabled = "LocalVideoEnabled";
 
 export const cDispatchJoinRoom = "join-room";
+export const cDispatchShortcutClick = "shortcut-click";
 
 export const cDebounceButtonClickDelay = 500; // milliseconds
 
@@ -19,7 +20,8 @@ export const cKeyboardShiftKey = "⇧";
 
 export const cKeyBoardIgnoreKeys = ["META", "CONTROL", "ALT", "SHIFT"];
 
-export const cKeyboardShortCutLocalVideoMute =
-  (cDeviceOS === DeviceOS.MacOS ? cKeyboardCommandKey : cKeyboardControlKey) + " + d";
-export const cKeyboardShortCutLocalAudioMute =
-  (cDeviceOS === DeviceOS.MacOS ? cKeyboardCommandKey : cKeyboardControlKey) + " + e";
+const cActionKey = (cDeviceOS === DeviceOS.MacOS ? cKeyboardCommandKey : cKeyboardControlKey);
+export const cKeyboardShortCutToggleCamera = [cActionKey, "c"];
+export const cKeyboardShortCutToggleMicrophone = [cActionKey, "m"];
+export const cKeyboardShortCutHangup = [cActionKey, "h"];
+export const cKeyboardShortCutSettings = [cActionKey, "s"];

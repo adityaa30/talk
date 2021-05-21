@@ -7,7 +7,7 @@ import {
   cSpaceBar
 } from "./Constants";
 
-const listeners = new Map<() => void, string>();
+const listeners = new Map<() => void, Array<string>>();
 
 /** Get the key, convert to shortcut icon if possible */
 function GetKeysFromEvent(ev: KeyboardEvent): Array<string> {
@@ -38,8 +38,8 @@ function handleOnKeyDown(ev: KeyboardEvent) {
   if (fired) ev.preventDefault();
 }
 
-function isKeyClicked(combination: string, keys: Array<string>): boolean {
-  const buttons = combination.toUpperCase().replace(/[ +]/g, "").split("");
+function isKeyClicked(shortcut: Array<string>, keys: Array<string>): boolean {
+  const buttons = shortcut.map(val => val.toUpperCase().trim());
 
   for (const button of buttons) {
     if (keys.findIndex((key) => button === key) === -1) {
@@ -53,11 +53,11 @@ function isKeyClicked(combination: string, keys: Array<string>): boolean {
 function firePossibleListeners(keys: Array<string>): boolean {
   let found = false;
 
-  listeners.forEach((combination: string, cb: () => void) => {
-    if (isKeyClicked(combination, keys)) {
+  listeners.forEach((shortcut: Array<string>, cb: () => void) => {
+    if (isKeyClicked(shortcut, keys)) {
       found = true;
 
-      console.debug(`%c[KeyboardShortHelper] Clicked Combination=${combination}`, "color: LightBlue");
+      console.debug(`%c[KeyboardShortHelper] Clicked Combination=${shortcut}`, "color: LightBlue");
       cb(); // Fire the callback / listener
     }
   });
@@ -78,17 +78,17 @@ function Stop() {
   document.removeEventListener("keydown", handleOnKeyDown);
 }
 
-function addOnKeyClickListener(combination: string, cb: () => void) {
-  listeners.set(cb, combination);
+function addOnShortcutClickListener(shortcut: Array<string>, cb: () => void) {
+  listeners.set(cb, shortcut);
 }
 
-function removeOnKeyClickListener(combination: string, cb: () => void) {
+function removeOnShortcutClickListener(cb: () => void) {
   listeners.delete(cb);
 }
 
 export default {
   Start,
   Stop,
-  addOnKeyClickListener,
-  removeOnKeyClickListener
+  addOnShortcutClickListener,
+  removeOnShortcutClickListener
 };

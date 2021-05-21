@@ -2,24 +2,27 @@
 
 @use '@material/theme/color-palette';
 
-// Svelte Colors!
+// Svelte Colors! (Dark Theme)
+// https://coolors.co/000814-001d3d-003566-ffc300-ffd60a
 @use '@material/theme/index' as theme with (
-  $primary: #ff3e00,
-  $secondary: #676778,
-  $surface: #fff,
-  $background: #fff,
-  $error: color-palette.$red-900,
+  $primary: #003566,
+  $secondary: color.scale(#ffc300, $whiteness: -10%),
+  $surface: #000814,
+  $on-surface: #fff,
+  $background: #001d3d,
+  $error: color-palette.$red-700
 );
 
 html,
 body {
-  background-color: theme.$surface;
+  background-color: theme.$background;
   color: theme.$on-surface;
 }
 
 a {
   color: #40b3ff;
 }
+
 a:visited {
   color: color.scale(#40b3ff, $lightness: -35%);
 }

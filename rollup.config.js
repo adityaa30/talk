@@ -5,6 +5,7 @@ import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import sveltePreprocess from "svelte-preprocess";
 import typescript from "@rollup/plugin-typescript";
+import replace from "@rollup/plugin-replace";
 import postcss from "rollup-plugin-postcss";
 
 const production = !process.env.ROLLUP_WATCH;
@@ -39,6 +40,11 @@ export default {
     file: "public/build/bundle.js"
   },
   plugins: [
+    replace({
+      preventAssignment: true,
+      "process.env.NODE_ENV": JSON.stringify(production ? "production" : "development")
+    }),
+
     postcss({
       extract: true,
       minimize: production,
@@ -57,7 +63,7 @@ export default {
         sourceMap: !production,
         postcss: true,
         scss: true,
-        sass: true,
+        sass: true
       }),
       compilerOptions: {
         // enable run-time checks when not in production

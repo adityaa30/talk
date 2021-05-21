@@ -14,3 +14,7 @@ export function getDeviceOS(): DeviceOS {
 
   throw Error("Cannot determine device OS");
 }
+
+export function toShortCutString(shortcut: Array<string>, prefix: string = "") {
+  return (prefix + " " + shortcut.join("+")).trim();
+}

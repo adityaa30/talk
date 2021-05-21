@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import debounce from "lodash.debounce";
   import { onDestroy, onMount } from "svelte";
   import { localAudioEnabled, localVideoEnabled } from "../stores/User";
@@ -6,8 +6,8 @@
   import Fab, { Icon } from "@smui/fab";
   import {
     cDebounceButtonClickDelay,
-    cKeyboardShortCutLocalVideoMute,
-    cKeyboardShortCutLocalAudioMute
+    cKeyboardShortCutToggleCamera,
+    cKeyboardShortCutToggleMicrophone
   } from "../utils/Constants";
   import KeyboardShortcutHelper from "../utils/KeyboardShortcutHelper";
 
@@ -35,13 +35,16 @@
       video.srcObject = new MediaStream();
     }
 
-    KeyboardShortcutHelper.addOnKeyClickListener(cKeyboardShortCutLocalVideoMute, toggleVideo);
-    KeyboardShortcutHelper.addOnKeyClickListener(cKeyboardShortCutLocalAudioMute, toggleAudio);
+    KeyboardShortcutHelper.addOnShortcutClickListener(cKeyboardShortCutToggleCamera, toggleVideo);
+    KeyboardShortcutHelper.addOnShortcutClickListener(cKeyboardShortCutToggleMicrophone, toggleAudio);
   });
 
   onDestroy(() => {
-    KeyboardShortcutHelper.removeOnKeyClickListener(cKeyboardShortCutLocalVideoMute, toggleVideo);
-    KeyboardShortcutHelper.removeOnKeyClickListener(cKeyboardShortCutLocalAudioMute, toggleAudio);
+    const stream = video.srcObject;
+    stream.getTracks().forEach(track => track.stop());
+
+    KeyboardShortcutHelper.removeOnShortcutClickListener(toggleVideo);
+    KeyboardShortcutHelper.removeOnShortcutClickListener(toggleAudio);
   });
 
   const toggleVideoTrack = debounce(async () => {
@@ -116,7 +119,7 @@
     <video autoplay bind:this="{video}" muted playsinline></video>
 
     <div id="preview-action-buttons-container">
-      <fab-wrapper data-tooltip="{cKeyboardShortCutLocalVideoMute}">
+      <fab-wrapper data-tooltip="{cKeyboardShortCutToggleCamera}">
         <Fab
           id="preview-video-toggle-button"
           style="margin: var(--margin-large) var(--margin-medium);"
@@ -127,7 +130,7 @@
         </Fab>
       </fab-wrapper>
 
-      <fab-wrapper data-tooltip="{cKeyboardShortCutLocalAudioMute}">
+      <fab-wrapper data-tooltip="{cKeyboardShortCutToggleMicrophone}">
         <Fab
           id="preview-audio-toggle-button"
           style="margin: var(--margin-large) var(--margin-medium);"
