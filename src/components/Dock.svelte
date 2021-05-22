@@ -4,7 +4,11 @@
     cKeyboardShortCutHangup,
     cKeyboardShortCutToggleMicrophone,
     cKeyboardShortCutToggleCamera,
-    cKeyboardShortCutSettings
+    cKeyboardShortCutSettings,
+    cAssetsPathMic,
+    cAssetsPathCallEnd,
+    cAssetsPathCamera,
+    cAssetsPathSettings
   } from "../utils/Constants";
 
   const apps: Array<{
@@ -13,22 +17,22 @@
     shortcut: Array<string>;
   }> = [
     {
-      src: "/assets/mic.svg",
+      src: cAssetsPathMic,
       title: "Microphone",
       shortcut: cKeyboardShortCutToggleMicrophone
     },
     {
-      src: "/assets/call_end.svg",
+      src: cAssetsPathCallEnd,
       title: "Hangup",
       shortcut: cKeyboardShortCutHangup
     },
     {
-      src: "/assets/videocam.svg",
+      src: cAssetsPathCamera,
       title: "Camera",
       shortcut: cKeyboardShortCutToggleCamera
     },
     {
-      src: "/assets/settings.svg",
+      src: cAssetsPathSettings,
       title: "Settings",
       shortcut: cKeyboardShortCutSettings
     }

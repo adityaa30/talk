@@ -18,3 +18,12 @@ export function getDeviceOS(): DeviceOS {
 export function toShortCutString(shortcut: Array<string>, prefix: string = "") {
   return (prefix + " " + shortcut.join("+")).trim();
 }
+
+export function getBaseUrl(): string {
+  const { origin } = window.location;
+  if (origin.indexOf("github.io") !== -1) {
+    return `${origin}/talk`;
+  }
+
+  return origin;
+}

@@ -1,6 +1,7 @@
-import { DeviceOS, getDeviceOS } from "./utils";
+import { DeviceOS, getBaseUrl, getDeviceOS } from "./utils";
 
 export const cDeviceOS = getDeviceOS();
+const cBaseUrl = getBaseUrl();
 
 export const cName = "Name";
 export const cRoomId = "RoomId";
@@ -25,3 +26,9 @@ export const cKeyboardShortCutToggleCamera = [cActionKey, "c"];
 export const cKeyboardShortCutToggleMicrophone = [cActionKey, "m"];
 export const cKeyboardShortCutHangup = [cActionKey, "h"];
 export const cKeyboardShortCutSettings = [cActionKey, "s"];
+
+export const cAssetsPath = `${cBaseUrl}/assets`;
+export const cAssetsPathMic = `${cBaseUrl}/assets/mic.svg`;
+export const cAssetsPathCallEnd = `${cBaseUrl}/assets/call_end.svg`;
+export const cAssetsPathCamera = `${cBaseUrl}/assets/videocam.svg`;
+export const cAssetsPathSettings = `${cBaseUrl}/assets/settings.svg`;
