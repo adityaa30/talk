@@ -14,6 +14,7 @@
   const tooltip = toShortCutString(shortcut, title);
 
   const dispatch = createEventDispatcher();
+
   function handleOnShortcutClick() {
     dispatch(cDispatchShortcutClick);
     console.log("Clicked: ", title);
@@ -63,7 +64,6 @@
   let width: string;
   $: width = `${$widthPX / 16}rem`;
 
-  let raf: number;
 
   function animate(mouseX: number | null) {
     if (el && mouseX !== null) {
@@ -82,7 +82,8 @@
     distance = beyondTheDistanceLimit;
   }
 
-  $: raf = requestAnimationFrame(() => animate(mouseX));
+  let _: number;
+  $: _ = requestAnimationFrame(() => animate(mouseX));
 </script>
 
 <section>

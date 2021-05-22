@@ -5,7 +5,6 @@
     cKeyboardShortCutToggleMicrophone,
     cKeyboardShortCutToggleCamera, cKeyboardShortCutSettings
   } from "../utils/Constants";
-  import { toShortCutString } from "../utils/utils";
 
   const apps: Array<{
     src: string,

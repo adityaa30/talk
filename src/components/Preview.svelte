@@ -11,7 +11,7 @@
   } from "../utils/Constants";
   import KeyboardShortcutHelper from "../utils/KeyboardShortcutHelper";
 
-  let video;
+  let video: HTMLVideoElement;
   let hasAudioTrack = false;
   let hasVideoTrack = false;
 
@@ -40,15 +40,15 @@
   });
 
   onDestroy(() => {
-    const stream = video.srcObject;
-    stream.getTracks().forEach(track => track.stop());
+    const stream = video.srcObject as MediaStream;
+    stream.getTracks().forEach((track: MediaStreamTrack) => track.stop());
 
     KeyboardShortcutHelper.removeOnShortcutClickListener(toggleVideo);
     KeyboardShortcutHelper.removeOnShortcutClickListener(toggleAudio);
   });
 
   const toggleVideoTrack = debounce(async () => {
-    const stream = video.srcObject;
+    const stream = video.srcObject as MediaStream;
     console.debug(
       `%c[Preview] toggleVideo: localVideoEnabled=${$localVideoEnabled}, tracks=`,
       "color: GreenYellow",
@@ -76,7 +76,7 @@
   }, cDebounceButtonClickDelay);
 
   const toggleAudioTrack = debounce(async () => {
-    const stream = video.srcObject;
+    const stream = video.srcObject as MediaStream;
     console.debug(
       `%c[Preview] toggleAudio: localAudioEnabled=${$localAudioEnabled}, tracks=`,
       "color: GreenYellow",
