@@ -5,6 +5,7 @@
   import KeyboardShortcutHelper from "./utils/KeyboardShortcutHelper";
   import { Page } from "./typings/Page";
   import { onDestroy, onMount } from "svelte";
+  import Footer from "./components/Footer.svelte";
 
   onMount(() => {
     KeyboardShortcutHelper.Start();
@@ -21,11 +22,14 @@
   }
 </script>
 
-{#if page === Page.Meeting}
-  <Meeting />
-{:else}
-  <Home on:join-room="{handleJoinRoom}" />
-{/if}
+<app-container>
+  {#if page === Page.Meeting}
+    <Meeting />
+  {:else}
+    <Home on:join-room="{handleJoinRoom}" />
+  {/if}
+  <Footer />
+</app-container>
 
 <style lang="scss">
   :global(:root) {
@@ -48,5 +52,12 @@
 
     // Extra large devices (large desktops, 1200px and up)
     // No media query since this is the default here
+  }
+
+  app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
   }
 </style>
