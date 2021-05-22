@@ -9,7 +9,7 @@ export const cLocalAudioEnabled = "LocalAudioEnabled";
 export const cLocalVideoEnabled = "LocalVideoEnabled";
 
 export const cDispatchJoinRoom = "join-room";
-export const cDispatchShortcutClick = "shortcut-click";
+export const cDispatchClick = "click";
 
 export const cDebounceButtonClickDelay = 500; // milliseconds
 
@@ -26,9 +26,11 @@ export const cKeyboardShortCutToggleCamera = [cActionKey, "c"];
 export const cKeyboardShortCutToggleMicrophone = [cActionKey, "m"];
 export const cKeyboardShortCutHangup = [cActionKey, "h"];
 export const cKeyboardShortCutSettings = [cActionKey, "s"];
+export const cKeyboardShortShowEveryone = [cActionKey, "a"];
 
 export const cAssetsPath = `${cBaseUrl}/assets`;
 export const cAssetsPathMic = `${cBaseUrl}/assets/mic.svg`;
 export const cAssetsPathCallEnd = `${cBaseUrl}/assets/call_end.svg`;
 export const cAssetsPathCamera = `${cBaseUrl}/assets/videocam.svg`;
-export const cAssetsPathSettings = `${cBaseUrl}/assets/settings.svg`;
+export const cAssetsPathSettings = `${cBaseUrl}/assets/settings.png`;
+export const cAssetsPathVideoGrid = `${cBaseUrl}/assets/video-grid.png`;

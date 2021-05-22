@@ -23,11 +23,13 @@
 </script>
 
 <app-container>
-  {#if page === Page.Meeting}
-    <Meeting />
-  {:else}
-    <Home on:join-room="{handleJoinRoom}" />
-  {/if}
+  <div style="flex-grow: 1">
+    {#if page === Page.Meeting}
+      <Meeting />
+    {:else}
+      <Home on:join-room="{handleJoinRoom}" />
+    {/if}
+  </div>
   <Footer />
 </app-container>
 

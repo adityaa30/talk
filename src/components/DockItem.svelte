@@ -1,31 +1,32 @@
 <script lang="ts">
   import { interpolate } from "popmotion";
   import { spring } from "svelte/motion";
-  import { toShortCutString } from "../utils/utils";
+  import { isMobile, toShortCutString } from "../utils/utils";
   import { createEventDispatcher, onDestroy, onMount } from "svelte";
   import KeyboardShortcutHelper from "../utils/KeyboardShortcutHelper";
-  import { cDispatchShortcutClick } from "../utils/Constants";
+  import { cDispatchClick } from "../utils/Constants";
 
   export let src: string;
   export let title: string;
   export let shortcut: Array<string>;
+  export let greyed = false;
   export let mouseX: number | null;
 
   const tooltip = toShortCutString(shortcut, title);
 
   const dispatch = createEventDispatcher();
 
-  function handleOnShortcutClick() {
-    dispatch(cDispatchShortcutClick);
+  function handleDockItemClick() {
+    dispatch(cDispatchClick);
     console.log("Clicked: ", title);
   }
 
   onMount(() => {
-    KeyboardShortcutHelper.addOnShortcutClickListener(shortcut, handleOnShortcutClick);
+    KeyboardShortcutHelper.addOnShortcutClickListener(shortcut, handleDockItemClick);
   });
 
   onDestroy(() => {
-    KeyboardShortcutHelper.removeOnShortcutClickListener(handleOnShortcutClick);
+    KeyboardShortcutHelper.removeOnShortcutClickListener(handleDockItemClick);
   });
 
   let el: HTMLImageElement;
@@ -81,11 +82,11 @@
     distance = beyondTheDistanceLimit;
   }
 
-  $: requestAnimationFrame(() => animate(mouseX));
+  $: requestAnimationFrame(() => !isMobile() && animate(mouseX));
 </script>
 
 <section>
-  <button data-tooltip="{tooltip}">
+  <button data-tooltip="{tooltip}" on:click="{handleDockItemClick}" class="{greyed ? 'greyed' : ''}">
     <img bind:this="{el}" src="{src}" alt="{title} Icon" style="width: {width};" />
   </button>
 </section>
@@ -113,5 +114,10 @@
     &:not(:disabled) {
       cursor: pointer;
     }
+  }
+
+  .greyed {
+    opacity: 0.4;
+    background: #000;
   }
 </style>

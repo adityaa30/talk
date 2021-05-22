@@ -8,7 +8,9 @@
     cAssetsPathMic,
     cAssetsPathCallEnd,
     cAssetsPathCamera,
-    cAssetsPathSettings
+    cAssetsPathSettings,
+    cAssetsPathVideoGrid,
+    cKeyboardShortShowEveryone
   } from "../utils/Constants";
 
   const apps: Array<{
@@ -30,6 +32,11 @@
       src: cAssetsPathCamera,
       title: "Camera",
       shortcut: cKeyboardShortCutToggleCamera
+    },
+    {
+      src: cAssetsPathVideoGrid,
+      title: "Show Everyone",
+      shortcut: cKeyboardShortShowEveryone
     },
     {
       src: cAssetsPathSettings,
@@ -54,11 +61,10 @@
 
 <style lang="scss">
   .dock-container {
-    margin-bottom: 0.5rem;
     left: 0;
     bottom: 0;
     z-index: 9900;
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 4rem;
     padding: 0.4rem;

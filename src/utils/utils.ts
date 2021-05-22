@@ -16,7 +16,7 @@ export function getDeviceOS(): DeviceOS {
 }
 
 export function toShortCutString(shortcut: Array<string>, prefix: string = "") {
-  return (prefix + " " + shortcut.join("+")).trim();
+  return (prefix + "  " + shortcut.join("")).trim();
 }
 
 export function getBaseUrl(): string {
@@ -26,4 +26,8 @@ export function getBaseUrl(): string {
   }
 
   return origin;
+}
+
+export function isMobile() {
+  return window.innerWidth <= 800 || window.innerHeight <= 600;
 }
