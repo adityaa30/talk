@@ -22,9 +22,9 @@
 </script>
 
 {#if page === Page.Meeting}
-  <Home on:join-room="{handleJoinRoom}" />
-{:else}
   <Meeting />
+{:else}
+  <Home on:join-room="{handleJoinRoom}" />
 {/if}
 
 <style lang="scss">

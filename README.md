@@ -103,11 +103,12 @@ directory and rebuilds & hot-reloads webpage on change.
             - [ ] Speaker List (names with avatars)
             - [ ] Chat
             - Other items (TBD 💭)
-    - [ ] Macbook Style auto-hiding dock
+    - [x] Macbook Style auto-hiding dock
         - [ ] Mute / Unmute Buttons
         - [ ] End Call Button
         - [ ] Settings Button
         - [ ] Start Collaboration Button - Shows a dropdown with list of supported apps
+        - [ ] Icons Pack
 
 3. Collaboration
     - [ ] Any item settable to all the users (anyone first-come-first-serve can set)
