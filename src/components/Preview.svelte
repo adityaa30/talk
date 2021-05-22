@@ -9,6 +9,7 @@
     cKeyboardShortCutToggleCamera,
     cKeyboardShortCutToggleMicrophone
   } from "../utils/Constants";
+  import { toShortCutString } from "../utils/utils";
   import KeyboardShortcutHelper from "../utils/KeyboardShortcutHelper";
 
   let video: HTMLVideoElement;
@@ -119,7 +120,7 @@
     <video autoplay bind:this="{video}" muted playsinline></video>
 
     <div id="preview-action-buttons-container">
-      <fab-wrapper data-tooltip="{cKeyboardShortCutToggleCamera}">
+      <fab-wrapper data-tooltip="{toShortCutString(cKeyboardShortCutToggleCamera, 'Toggle Camera')}">
         <Fab
           id="preview-video-toggle-button"
           style="margin: var(--margin-large) var(--margin-medium);"
@@ -130,7 +131,7 @@
         </Fab>
       </fab-wrapper>
 
-      <fab-wrapper data-tooltip="{cKeyboardShortCutToggleMicrophone}">
+      <fab-wrapper data-tooltip="{toShortCutString(cKeyboardShortCutToggleMicrophone, 'Toggle Mic')}">
         <Fab
           id="preview-audio-toggle-button"
           style="margin: var(--margin-large) var(--margin-medium);"

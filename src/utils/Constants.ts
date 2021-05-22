@@ -20,7 +20,7 @@ export const cKeyboardShiftKey = "⇧";
 
 export const cKeyBoardIgnoreKeys = ["META", "CONTROL", "ALT", "SHIFT"];
 
-const cActionKey = (cDeviceOS === DeviceOS.MacOS ? cKeyboardCommandKey : cKeyboardControlKey);
+const cActionKey = cDeviceOS === DeviceOS.MacOS ? cKeyboardCommandKey : cKeyboardControlKey;
 export const cKeyboardShortCutToggleCamera = [cActionKey, "c"];
 export const cKeyboardShortCutToggleMicrophone = [cActionKey, "m"];
 export const cKeyboardShortCutHangup = [cActionKey, "h"];

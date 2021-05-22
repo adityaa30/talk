@@ -3,13 +3,14 @@
   import {
     cKeyboardShortCutHangup,
     cKeyboardShortCutToggleMicrophone,
-    cKeyboardShortCutToggleCamera, cKeyboardShortCutSettings
+    cKeyboardShortCutToggleCamera,
+    cKeyboardShortCutSettings
   } from "../utils/Constants";
 
   const apps: Array<{
-    src: string,
-    title: string,
-    shortcut: Array<string>,
+    src: string;
+    title: string;
+    shortcut: Array<string>;
   }> = [
     {
       src: "/assets/mic.svg",
@@ -38,11 +39,11 @@
 <section class="dock-container">
   <div
     class="dock-item-container"
-    on:mousemove={(event) => (mouseX = event.x)}
-    on:mouseleave={() => (mouseX = null)}
+    on:mousemove="{(event) => (mouseX = event.x)}"
+    on:mouseleave="{() => (mouseX = null)}"
   >
     {#each apps as app}
-      <DockItem {mouseX} {...app} />
+      <DockItem mouseX="{mouseX}" {...app} />
     {/each}
   </div>
 </section>
@@ -64,8 +65,7 @@
   .dock-item-container {
     backdrop-filter: blur(5px);
     background-color: hsla(240, 3%, 11%, 0.4);
-    box-shadow: inset 0 0 0 0.2px rgb(245 245 245 / 70%),
-    hsla(0, 0%, 0%, 0.3) 2px 5px 19px 7px;
+    box-shadow: inset 0 0 0 0.2px rgb(245 245 245 / 70%), hsla(0, 0%, 0%, 0.3) 2px 5px 19px 7px;
     padding: 0.3rem;
     border-radius: 1.2rem;
     height: 100%;

@@ -64,7 +64,6 @@
   let width: string;
   $: width = `${$widthPX / 16}rem`;
 
-
   function animate(mouseX: number | null) {
     if (el && mouseX !== null) {
       const rect = el.getBoundingClientRect();
@@ -82,8 +81,7 @@
     distance = beyondTheDistanceLimit;
   }
 
-  let _: number;
-  $: _ = requestAnimationFrame(() => animate(mouseX));
+  $: requestAnimationFrame(() => animate(mouseX));
 </script>
 
 <section>

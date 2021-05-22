@@ -39,7 +39,7 @@ function handleOnKeyDown(ev: KeyboardEvent) {
 }
 
 function isKeyClicked(shortcut: Array<string>, keys: Array<string>): boolean {
-  const buttons = shortcut.map(val => val.toUpperCase().trim());
+  const buttons = shortcut.map((val) => val.toUpperCase().trim());
 
   for (const button of buttons) {
     if (keys.findIndex((key) => button === key) === -1) {
