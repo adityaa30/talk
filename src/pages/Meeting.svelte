@@ -1,6 +1,6 @@
 <script>
   import Dock from "../components/Dock.svelte";
-  import VideoGrid from "../components/VideoGrid.svelte";
+  import VideoGrid from "../components/Participants.svelte";
 
   let showParticipants = false;
 </script>

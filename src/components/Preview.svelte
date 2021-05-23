@@ -6,8 +6,8 @@
   import Fab, { Icon } from "@smui/fab";
   import {
     cDebounceButtonClickDelay,
-    cKeyboardShortCutToggleCamera,
-    cKeyboardShortCutToggleMicrophone
+    cKeyboardShortcutToggleCamera,
+    cKeyboardShortcutToggleMicrophone
   } from "../utils/Constants";
   import { toShortCutString } from "../utils/utils";
   import KeyboardShortcutHelper from "../utils/KeyboardShortcutHelper";
@@ -36,8 +36,8 @@
       video.srcObject = new MediaStream();
     }
 
-    KeyboardShortcutHelper.addOnShortcutClickListener(cKeyboardShortCutToggleCamera, toggleVideo);
-    KeyboardShortcutHelper.addOnShortcutClickListener(cKeyboardShortCutToggleMicrophone, toggleAudio);
+    KeyboardShortcutHelper.addOnShortcutClickListener(cKeyboardShortcutToggleCamera, toggleVideo);
+    KeyboardShortcutHelper.addOnShortcutClickListener(cKeyboardShortcutToggleMicrophone, toggleAudio);
   });
 
   onDestroy(() => {
@@ -120,7 +120,7 @@
     <video autoplay bind:this="{video}" muted playsinline></video>
 
     <div id="preview-action-buttons-container">
-      <fab-wrapper data-tooltip="{toShortCutString(cKeyboardShortCutToggleCamera, 'Toggle Camera')}">
+      <fab-wrapper data-tooltip="{toShortCutString(cKeyboardShortcutToggleCamera, 'Toggle Camera')}">
         <Fab
           id="preview-video-toggle-button"
           style="margin: var(--margin-large) var(--margin-medium);"
@@ -131,7 +131,7 @@
         </Fab>
       </fab-wrapper>
 
-      <fab-wrapper data-tooltip="{toShortCutString(cKeyboardShortCutToggleMicrophone, 'Toggle Mic')}">
+      <fab-wrapper data-tooltip="{toShortCutString(cKeyboardShortcutToggleMicrophone, 'Toggle Mic')}">
         <Fab
           id="preview-audio-toggle-button"
           style="margin: var(--margin-large) var(--margin-medium);"

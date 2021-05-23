@@ -2,21 +2,27 @@
   import DockItem from "./DockItem.svelte";
   import { createEventDispatcher } from "svelte";
   import {
-    cKeyboardShortCutHangup,
-    cKeyboardShortCutToggleMicrophone,
-    cKeyboardShortCutToggleCamera,
-    cKeyboardShortCutSettings,
+    cKeyboardShortcutHangup,
+    cKeyboardShortcutToggleMicrophone,
+    cKeyboardShortcutToggleCamera,
+    cKeyboardShortcutSettings,
+    cKeyboardShortcutChat,
+    cKeyboardShortcutExtensions,
     cAssetsPathMic,
     cAssetsPathCallEnd,
     cAssetsPathCamera,
     cAssetsPathSettings,
-    cAssetsPathVideoGrid,
-    cKeyboardShortShowEveryone,
+    cAssetsPathParticipants,
+    cAssetsPathChat,
+    cAssetsPathExtensions,
+    cKeyboardShortcutParticipants,
     cDispatchDockParticipants,
     cDispatchDockSettings,
     cDispatchDockCamera,
     cDispatchDockHangup,
-    cDispatchDockMicrophone
+    cDispatchDockMicrophone,
+    cDispatchDockChat,
+    cDispatchDockExtensions
   } from "../utils/Constants";
 
   const dispatch = createEventDispatcher();
@@ -30,31 +36,43 @@
     {
       src: cAssetsPathMic,
       title: "Microphone",
-      shortcut: cKeyboardShortCutToggleMicrophone,
+      shortcut: cKeyboardShortcutToggleMicrophone,
       task: () => dispatch(cDispatchDockMicrophone)
     },
     {
       src: cAssetsPathCallEnd,
       title: "Hangup",
-      shortcut: cKeyboardShortCutHangup,
+      shortcut: cKeyboardShortcutHangup,
       task: () => dispatch(cDispatchDockHangup)
     },
     {
       src: cAssetsPathCamera,
       title: "Camera",
-      shortcut: cKeyboardShortCutToggleCamera,
+      shortcut: cKeyboardShortcutToggleCamera,
       task: () => dispatch(cDispatchDockCamera)
     },
     {
-      src: cAssetsPathVideoGrid,
+      src: cAssetsPathParticipants,
       title: "Show Everyone",
-      shortcut: cKeyboardShortShowEveryone,
+      shortcut: cKeyboardShortcutParticipants,
       task: () => dispatch(cDispatchDockParticipants)
+    },
+    {
+      src: cAssetsPathChat,
+      title: "Chat",
+      shortcut: cKeyboardShortcutChat,
+      task: () => dispatch(cDispatchDockChat)
+    },
+    {
+      src: cAssetsPathExtensions,
+      title: "Extensions",
+      shortcut: cKeyboardShortcutExtensions,
+      task: () => dispatch(cDispatchDockExtensions)
     },
     {
       src: cAssetsPathSettings,
       title: "Settings",
-      shortcut: cKeyboardShortCutSettings,
+      shortcut: cKeyboardShortcutSettings,
       task: () => dispatch(cDispatchDockSettings)
     }
   ];
