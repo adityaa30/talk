@@ -56,3 +56,7 @@ export function getNameInitials(name: string) {
     return words[0][0] + words[0][0];
   }
 }
+export function sleep(ms: number): Promise<void> {
+  if (ms <= 0) throw Error("`ms` should be a positive integer");
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
+  import { fade } from "svelte/transition";
   import { getNameInitials, hasVideoTrack, isInViewport } from "../utils/utils";
 
   export let height: string = "200px";
@@ -42,7 +43,7 @@
   });
 </script>
 
-<div class="video-tile-container" style="height: {height}; border-color: {borderColor};">
+<div class="video-tile-container" style="height: {height}; border-color: {borderColor};" transition:fade|local>
   <video bind:this="{video}" autoplay muted></video>
   <div class="circle" style="{isVideoVisible ? 'display: none;' : ''}">
     <div class="initials">{initials}</div>

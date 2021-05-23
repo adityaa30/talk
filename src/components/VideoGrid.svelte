@@ -1,23 +1,32 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
+  import { fade } from "svelte/transition";
   import VideoTile from "./VideoTile.svelte";
   import Store from "../utils/LocalStore";
   import { cName } from "../utils/Constants";
+  import { sleep } from "../utils/utils";
 
-  let videos = [];
+  let videos: Array<MediaStream> = [];
 
   onMount(async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: true });
     for (let i = 0; i < 50; ++i) {
       videos.push(stream);
+      videos = [...videos];
+      await sleep(500);
     }
-    videos = [...videos];
+  });
+
+  onDestroy(() => {
+    const stream = videos[0];
+    stream.getTracks().forEach((track: MediaStreamTrack) => track.stop());
+    videos = [];
   });
 
   let name = Store.get(cName, "");
 </script>
 
-<video-grid>
+<video-grid transition:fade>
   {#each videos as video}
     <VideoTile name="{name}" source="{video}" />
   {/each}

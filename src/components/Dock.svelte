@@ -1,5 +1,6 @@
 <script lang="ts">
   import DockItem from "./DockItem.svelte";
+  import { createEventDispatcher } from "svelte";
   import {
     cKeyboardShortCutHangup,
     cKeyboardShortCutToggleMicrophone,
@@ -10,38 +11,47 @@
     cAssetsPathCamera,
     cAssetsPathSettings,
     cAssetsPathVideoGrid,
-    cKeyboardShortShowEveryone
+    cKeyboardShortShowEveryone,
+    cDispatchDockParticipants
   } from "../utils/Constants";
+
+  const dispatch = createEventDispatcher();
 
   const apps: Array<{
     src: string;
     title: string;
     shortcut: Array<string>;
+    task: () => void | null;
   }> = [
     {
       src: cAssetsPathMic,
       title: "Microphone",
-      shortcut: cKeyboardShortCutToggleMicrophone
+      shortcut: cKeyboardShortCutToggleMicrophone,
+      task: null
     },
     {
       src: cAssetsPathCallEnd,
       title: "Hangup",
-      shortcut: cKeyboardShortCutHangup
+      shortcut: cKeyboardShortCutHangup,
+      task: null
     },
     {
       src: cAssetsPathCamera,
       title: "Camera",
-      shortcut: cKeyboardShortCutToggleCamera
+      shortcut: cKeyboardShortCutToggleCamera,
+      task: null
     },
     {
       src: cAssetsPathVideoGrid,
       title: "Show Everyone",
-      shortcut: cKeyboardShortShowEveryone
+      shortcut: cKeyboardShortShowEveryone,
+      task: () => dispatch(cDispatchDockParticipants)
     },
     {
       src: cAssetsPathSettings,
       title: "Settings",
-      shortcut: cKeyboardShortCutSettings
+      shortcut: cKeyboardShortCutSettings,
+      task: null
     }
   ];
   let mouseX: number | null = null;
@@ -54,7 +64,7 @@
     on:mouseleave="{() => (mouseX = null)}"
   >
     {#each apps as app}
-      <DockItem mouseX="{mouseX}" {...app} />
+      <DockItem mouseX="{mouseX}" {...app} on:click="{() => app.task && app.task()}" />
     {/each}
   </div>
 </section>
@@ -68,7 +78,7 @@
     left: 0;
     bottom: 0;
 
-    z-index: 9900;
+    z-index: 5;
 
     padding: 0.4rem;
     margin-bottom: var(--margin-medium);

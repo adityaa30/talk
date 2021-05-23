@@ -10,6 +10,7 @@ export const cLocalVideoEnabled = "LocalVideoEnabled";
 
 export const cDispatchJoinRoom = "join-room";
 export const cDispatchClick = "click";
+export const cDispatchDockParticipants = "dock-participants";
 
 export const cDebounceButtonClickDelay = 500; // milliseconds
 
