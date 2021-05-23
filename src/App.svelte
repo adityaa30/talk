@@ -40,6 +40,9 @@
     --margin-medium: 0.5rem;
     --margin-large: 1rem;
 
+    --video-tile-initials-radius: 2rem;
+    --dock-height: 4rem;
+
     // Extra small devices (portrait phones, less than 576px)
     --very-small-device-width-limit: 576px;
 

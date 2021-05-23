@@ -61,13 +61,17 @@
 
 <style lang="scss">
   .dock-container {
+    width: 100%;
+    height: var(--dock-height);
+
+    position: fixed;
     left: 0;
     bottom: 0;
+
     z-index: 9900;
-    position: absolute;
-    width: 100%;
-    height: 4rem;
+
     padding: 0.4rem;
+    margin-bottom: var(--margin-medium);
     display: flex;
     justify-content: center;
   }
