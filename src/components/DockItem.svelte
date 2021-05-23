@@ -1,10 +1,11 @@
 <script lang="ts">
+  import debounce from "lodash.debounce";
   import { interpolate } from "popmotion";
   import { spring } from "svelte/motion";
   import { isMobile, toShortCutString } from "../utils/utils";
   import { createEventDispatcher, onDestroy, onMount } from "svelte";
   import KeyboardShortcutHelper from "../utils/KeyboardShortcutHelper";
-  import { cDispatchClick } from "../utils/Constants";
+  import { cDebounceDockItemClickDelay, cDispatchClick } from "../utils/Constants";
 
   export let src: string;
   export let title: string;
@@ -16,10 +17,9 @@
 
   const dispatch = createEventDispatcher();
 
-  function handleDockItemClick() {
+  const handleDockItemClick = debounce(() => {
     dispatch(cDispatchClick);
-    console.log("Clicked: ", title);
-  }
+  }, cDebounceDockItemClickDelay);
 
   onMount(() => {
     KeyboardShortcutHelper.addOnShortcutClickListener(shortcut, handleDockItemClick);

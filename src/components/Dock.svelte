@@ -12,7 +12,11 @@
     cAssetsPathSettings,
     cAssetsPathVideoGrid,
     cKeyboardShortShowEveryone,
-    cDispatchDockParticipants
+    cDispatchDockParticipants,
+    cDispatchDockSettings,
+    cDispatchDockCamera,
+    cDispatchDockHangup,
+    cDispatchDockMicrophone
   } from "../utils/Constants";
 
   const dispatch = createEventDispatcher();
@@ -27,19 +31,19 @@
       src: cAssetsPathMic,
       title: "Microphone",
       shortcut: cKeyboardShortCutToggleMicrophone,
-      task: null
+      task: () => dispatch(cDispatchDockMicrophone)
     },
     {
       src: cAssetsPathCallEnd,
       title: "Hangup",
       shortcut: cKeyboardShortCutHangup,
-      task: null
+      task: () => dispatch(cDispatchDockHangup)
     },
     {
       src: cAssetsPathCamera,
       title: "Camera",
       shortcut: cKeyboardShortCutToggleCamera,
-      task: null
+      task: () => dispatch(cDispatchDockCamera)
     },
     {
       src: cAssetsPathVideoGrid,
@@ -51,7 +55,7 @@
       src: cAssetsPathSettings,
       title: "Settings",
       shortcut: cKeyboardShortCutSettings,
-      task: null
+      task: () => dispatch(cDispatchDockSettings)
     }
   ];
   let mouseX: number | null = null;

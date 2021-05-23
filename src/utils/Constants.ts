@@ -11,8 +11,13 @@ export const cLocalVideoEnabled = "LocalVideoEnabled";
 export const cDispatchJoinRoom = "join-room";
 export const cDispatchClick = "click";
 export const cDispatchDockParticipants = "dock-participants";
+export const cDispatchDockMicrophone = "dock-microphone";
+export const cDispatchDockCamera = "dock-camera";
+export const cDispatchDockHangup = "dock-hangup";
+export const cDispatchDockSettings = "dock-settings";
 
 export const cDebounceButtonClickDelay = 500; // milliseconds
+export const cDebounceDockItemClickDelay = 500; // milliseconds
 
 export const cKeyboardCommandKey = "⌘";
 export const cSpaceBar = "SpaceBar";
