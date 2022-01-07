@@ -102,6 +102,7 @@ directory and rebuilds & hot-reloads webpage on change.
             - [ ] Remaining speakers 2 x N grid vertical scrollable - sorted according to the active speaker
             - [ ] Speaker List (names with avatars)
             - [ ] Chat
+            - [ ] Emoji Reactions
             - Other items (TBD 💭)
     - [x] Macbook Style auto-hiding dock
         - [ ] Mute / Unmute Buttons
